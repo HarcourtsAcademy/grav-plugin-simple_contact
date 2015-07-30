@@ -56,12 +56,12 @@ class Simple_ContactPlugin extends Plugin
             if (false === $uri->param('send')) {
                 if ($_SERVER['REQUEST_METHOD'] == "POST") {
                     if (false === $this->validateFormData()) {
-                        $this->grav->redirect($page->slug() . '/send:error');
+                        $this->grav->redirect($page->url() . '/send:error');
                     } else {
                         if (false === $this->sendEmail()) {
-                            $this->grav->redirect($page->slug() . '/send:fail');
+                            $this->grav->redirect($page->url() . '/send:fail');
                         } else {
-                            $this->grav->redirect($page->slug() . '/send:success');
+                            $this->grav->redirect($page->url() . '/send:success');
                         }
                     }
                 } else {
@@ -121,10 +121,10 @@ class Simple_ContactPlugin extends Plugin
         $data = array_merge($defaults, $form);
 
         return [
-            'name'      => $data['name'],
+            'name'      => filter_var($data['name'], FILTER_SANITIZE_STRING),
             'email'     => filter_var($data['email'], FILTER_SANITIZE_EMAIL),
-            'message'   => $data['message'],
-            'antispam'  => $data['antispam']
+            'message'   => filter_var($data['message'], FILTER_SANITIZE_STRING),
+            'antispam'  => filter_var($data['antispam'], FILTER_SANITIZE_STRING)
         ];
     }
 
