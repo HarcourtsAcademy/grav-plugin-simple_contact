@@ -69,7 +69,8 @@ class Simple_ContactPlugin extends Plugin
                     $template = 'plugins/simple_contact/form.html.twig';
                     $data = [
                         'simple_contact' => $options,
-                        'page' => $page
+                        'page' => $page,
+                        'uri' => $uri
                     ];
 
                     $page->content($old_content . $twig->twig()->render($template, $data));
