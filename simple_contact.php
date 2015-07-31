@@ -115,6 +115,7 @@ class Simple_ContactPlugin extends Plugin
             'name'      => '',
             'email'     => '',
             'message'   => '',
+            'subject'   => 'New email received at ' . gethostname(),
             'antispam'  => ''
         ];
 
@@ -124,6 +125,7 @@ class Simple_ContactPlugin extends Plugin
             'name'      => filter_var($data['name'], FILTER_SANITIZE_STRING),
             'email'     => filter_var($data['email'], FILTER_SANITIZE_EMAIL),
             'message'   => filter_var($data['message'], FILTER_SANITIZE_STRING),
+            'subject'   => filter_var($data['subject'], FILTER_SANITIZE_STRING),
             'antispam'  => filter_var($data['antispam'], FILTER_SANITIZE_STRING)
         ];
     }
@@ -134,7 +136,7 @@ class Simple_ContactPlugin extends Plugin
         $options = $this->grav['config']->get('plugins.simple_contact');
 
         $recipient  = $options['recipient'];
-        $subject    = $options['subject'];
+        $subject    = $form['subject'];
 
         $email_content = "Name: {$form['name']}\n";
         $email_content .= "Email: {$form['email']}\n\n";
