@@ -138,9 +138,7 @@ class Simple_ContactPlugin extends Plugin
         $recipient  = $options['recipient'];
         $subject    = $form['subject'];
 
-        $email_content = "Name: {$form['name']}\n";
-        $email_content .= "Email: {$form['email']}\n\n";
-        $email_content .= "Message:\n{$form['message']}\n";
+        $email_content = $form['message'];
 
         $email_headers = "From: {$form['name']} <{$form['email']}>";
 
