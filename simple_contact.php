@@ -34,9 +34,8 @@ class Simple_ContactPlugin extends Plugin
     public function onTwigSiteVariables()
     {
         if ($this->grav['config']->get('plugins.simple_contact.enabled')) {
-            $this->grav['assets']
-                ->add('plugin://simple_contact/assets/css/plugins/simple_contact/style.css')
-                ->add('plugin://simple_contact/assets/js/plugins/simple_contact/script.js');
+            $this->grav['assets']->add('plugin://simple_contact/assets/css/simple_contact/style.css');
+            $this->grav['assets']->add('plugin://simple_contact/assets/js/simple_contact/script.js');
         }
     }
 
